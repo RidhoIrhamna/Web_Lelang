@@ -4,24 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateFeedbackTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        Schema::create('penawaran_lelang', function (Blueprint $table) {
-            $table->id();
+        Schema::create('feedback', function (Blueprint $table) {
+            $table->id('id_feedback');
+            $table->foreignId('user_id')->constrained('pengguna')->onDelete('cascade');
+            $table->foreignId('lelang_id')->constrained('lelang')->onDelete('cascade');
+            $table->unsignedTinyInteger('rating');
+            $table->text('komentar')->nullable();
+            $table->dateTime('waktu_feedback');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('penawaran_lelang');
+        Schema::dropIfExists('feedback');
     }
-};
+}
+
