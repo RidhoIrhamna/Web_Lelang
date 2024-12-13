@@ -47,3 +47,4 @@ class User extends Authenticatable
     }
 }
 #ridho irhamna test
+#fatih istana ngawi
